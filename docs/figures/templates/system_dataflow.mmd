@@ -1,0 +1,28 @@
+graph TD;
+    Mw["Middleware"];
+    U["Ui"];
+    P["PCB"];
+    T["Temperature Probe"];
+    Mo["Motors"];
+    D["Data Processing"];
+    C["Camera"];
+
+    subgraph PC;
+        U -- pyforms --> Mw;
+        Mw -- pyforms --> U;
+        Mw -- csvFile --> D;
+        D --> ExperimentOutput;
+    end;
+    subgraph Embedded;
+        P;
+    end;
+    subgraph ExternalComponents;
+        T;
+        Mo;
+        C;
+    end;
+    Mw -- UART --> P;
+    P  -- UART --> Mw;
+    T -- Voltage --> P;
+    P -- PWM --> Mo;
+    C -- RawFootage --> D;

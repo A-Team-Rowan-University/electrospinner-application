@@ -1,0 +1,5 @@
+pyforms
+pyforms-gui
+pylint
+pytest
+pyserial
